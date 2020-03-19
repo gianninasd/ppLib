@@ -1,5 +1,5 @@
 {
-    "name": "dg/pplib",
+    "name": "gianninasd/pplib",
     "description": "PHP Library for payment processing integration",
     "type": "library",
     "license": "MIT",
@@ -13,6 +13,6 @@
         "php": ">=7.3.0"
     },
     "autoload": {
-        "psr-4": {"dg\\pplib\\": "src/"}
+        "psr-4": {"gianninasd\\pplib\\": "src/"}
     }
 }

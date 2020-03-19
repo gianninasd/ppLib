@@ -1,5 +1,5 @@
 <?php
-namespace dg\pplib;
+namespace gianninasd\pplib;
 
 class Integration {
   
