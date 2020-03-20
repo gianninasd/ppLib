@@ -1,13 +1,10 @@
 <?php
 namespace gianninasd\pplib;
 
-class ObjectParser {
+/**
+ * 
+ */
+interface ObjectParser {
 
-  function parseRequest() {
-
-  }
-
-  function parseResponse() {
-    
-  }
+  
 }

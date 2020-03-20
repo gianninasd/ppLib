@@ -10,7 +10,7 @@ PHP Library for payment processing integration
 * Install Composer
 
 ## Automated Tests
-* To execute the unit tests, from a console run: `php F:/opt/php7.3.8/pear/codecept.phar run unit`
+* To execute the unit tests, from a console run: `php <path to>/codecept.phar run unit`
 
 ## References
 * https://getcomposer.org/
