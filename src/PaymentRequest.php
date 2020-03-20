@@ -6,9 +6,14 @@ namespace gianninasd\pplib;
  */
 class PaymentRequest {
 
-  public $url;
-  public $authenticationToken;
+  /**
+   * Id that is used
+   */
+  public $id;
+
   public $uuid;
+  public $url;
+  public $authenticationToken;  
   public $body;
 
 }
