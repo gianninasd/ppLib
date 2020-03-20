@@ -1,6 +1,8 @@
-[![Latest Stable Version](https://github.com/gianninasd/ppLib)](https://github.com/gianninasd/ppLib)
+[![Latest Stable Version](https://poser.pugx.org/gianninasd/pplib/v/stable)](https://packagist.org/packages/gianninasd/pplib)
 
-[![Total Downloads](https://github.com/gianninasd/ppLib)](https://github.com/gianninasd/ppLib)
+[![Latest Unstable Version](https://poser.pugx.org/gianninasd/pplib/v/unstable)](https://packagist.org/packages/gianninasd/pplib)
+
+[![Total Downloads](https://poser.pugx.org/gianninasd/pplib/downloads)](https://packagist.org/packages/gianninasd/pplib)
 
 PPLib
 ================
