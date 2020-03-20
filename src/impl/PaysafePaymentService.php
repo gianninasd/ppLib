@@ -20,11 +20,17 @@ class PaysafePaymentService implements PaymentService {
       $ch = curl_init();
       error_log("0011>");
       curl_setopt($ch, CURLOPT_URL, $request->url);
+      error_log("00112>");
       curl_setopt($ch, CURLOPT_POST, true);
+      error_log("00113>");
       curl_setopt($ch, CURLOPT_POSTFIELDS, $request->body);
+      error_log("00114>");
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      error_log("00115>");
       curl_setopt($ch, CURLOPT_VERBOSE, true);
+      error_log("00116>");
       curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+      error_log("00117>");
       curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json', 'Authorization: Basic ' . $request->authenticationToken) );
 
       error_log("11>");
