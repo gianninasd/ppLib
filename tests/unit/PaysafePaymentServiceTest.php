@@ -1,0 +1,79 @@
+<?php
+use Codeception\Test\Unit;
+use gianninasd\pplib\PaymentRequest;
+use gianninasd\pplib\impl\PaysafeParser;
+use gianninasd\pplib\impl\PaysafePaymentService;
+
+/**
+ * Unit test for the PaysafePaymentService class
+ */
+class PaysafePaymentServiceTest extends Unit {
+
+  private $verbose = true;
+  private $member;
+
+  protected function _before() {
+    $this->member = new class {
+      public $orgId;
+      public $id;
+      public $title;
+      public $firstName = "John";
+      public $lastName = "Doe";
+      public $statusCode;
+      public $memberType;
+      public $email = "john@sdf3.com";
+      public $homePhone;
+      public $cellPhone;
+      public $street1 = "123 Broadway";
+      public $street2 = "";
+      public $city = "Montreal";
+      public $country = "CA";
+      public $province = "QC";
+      public $postalCode = "H8P1K1";
+    };
+  }
+
+  private function createGoodBody( $uuid ) {
+    $token = "cgOSYqmX1W";
+    $amt = "1500";
+
+    $parser = new PaysafeParser();
+    $obj = $parser->parseRequest( $uuid, $token, $this->member, $amt );
+    return json_encode($obj, JSON_NUMERIC_CHECK);
+  }
+
+  private function createGoodRequest( $uuid, $body ) {
+    $req = new PaymentRequest();
+    $req->id = "rick@sdf3.com";
+    $req->url = "https://api.test.paysafe.com/cardpayments/v1/accounts/1001289630/auths";
+    $req->authenticationToken = "dGVzdF9hc3NsMTpCLXFhMi0wLTViZTg4MzJjLTAtMzAyYzAyMTQ2Y2Q4ZDUyZGRjY2E4ZWU4Y2U1Nzg0NTUwNWNlODBjZmNhYjIzYzYyMDIxNDBmYjAzMDBiMGJmOWE4Y2M2M2ZjMGI3ZDU4ZTJjMGMxYjY3MjQxMzA=";
+    $req->uuid = $uuid;
+    $req->body = $body;
+    return $req;
+  }
+
+  public function testBadToken() {
+    $uuid = uniqid("", true);
+    $body = $this->createGoodBody( $uuid );
+    $req = $this->createGoodRequest( $uuid, $body );
+    
+    $ps = new PaysafePaymentService( $this->verbose );
+    $resp = $ps->process($req);
+    $this->assertSame($uuid, $resp->uuid);
+    $this->assertSame(400, $resp->httpResponseCode);
+    $this->assertStringStartsWith("{", $resp->body);
+  }
+
+  public function testBadKey() {
+    $uuid = uniqid("", true);
+    $body = $this->createGoodBody( $uuid );
+    $req = $this->createGoodRequest( $uuid, $body );
+    $req->authenticationToken = "xxx";
+    
+    $ps = new PaysafePaymentService( $this->verbose );
+    $resp = $ps->process($req);
+    $this->assertSame($uuid, $resp->uuid);
+    $this->assertSame(401, $resp->httpResponseCode);
+    $this->assertStringStartsWith("{", $resp->body);
+  }
+}
