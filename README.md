@@ -15,12 +15,21 @@ PHP Library for payment processing integration
 * To execute the unit tests, from a console run: `php <path to>/codecept.phar run unit`
 
 ## Usage
-Prepare the request object
+Below is some sample code on how to use the various classes to prepare, send and process a payment.
 
 ```php
-// create the JSON body first
+// will be your own class representing the full billing data
+$member = new class {
+  ...
+  public $firstName = "John";
+  public $lastName = "Doe";
+  ...
+};
+
 $parser = new PaysafeParser();
-$obj = $parser->parseRequest( $uuid, $token, $this->member, $amt );
+
+// create the JSON body first
+$obj = $parser->parseRequest( $uuid, $token, $member, $amt );
 $body = json_encode($obj, JSON_NUMERIC_CHECK);
 
 $req = new PaymentRequest();
@@ -29,16 +38,12 @@ $req->url = __URL__;
 $req->authenticationToken = __AUTHTOKEN__;
 $req->uuid = $uuid;
 $req->body = $body;
-```
-Send the request to the remote third party service provider
 
-```php
+// Send the request to the remote third party service provider
 $ps = new PaysafePaymentService();
-$resp = $ps->process($req);
-```
-Process the response
+$resp = $ps->process( $req );
 
-```php
+// Process the response
 $jsonResponse = $parser->parseResponse( $resp );
 echo( $jsonResponse );
 ```
