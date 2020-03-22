@@ -45,8 +45,8 @@ class PaysafePaymentServiceTest extends Unit {
   private function createGoodRequest( $uuid, $body ) {
     $req = new PaymentRequest();
     $req->id = "rick@sdf3.com";
-    $req->url = "https://api.test.paysafe.com/cardpayments/v1/accounts/1001289630/auths";
-    $req->authenticationToken = "dGVzdF9hc3NsMTpCLXFhMi0wLTViZTg4MzJjLTAtMzAyYzAyMTQ2Y2Q4ZDUyZGRjY2E4ZWU4Y2U1Nzg0NTUwNWNlODBjZmNhYjIzYzYyMDIxNDBmYjAzMDBiMGJmOWE4Y2M2M2ZjMGI3ZDU4ZTJjMGMxYjY3MjQxMzA=";
+    $req->url = __URL__;
+    $req->authenticationToken = __AUTHTOKEN__;
     $req->uuid = $uuid;
     $req->body = $body;
     return $req;

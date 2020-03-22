@@ -7,6 +7,7 @@ PPLib
 PHP Library for payment processing integration
 
 ## Pre-requisites
+* Install PHP 7.x
 * Install Composer
 
 ## Automated Tests
