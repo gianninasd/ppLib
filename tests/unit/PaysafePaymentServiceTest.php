@@ -9,7 +9,6 @@ use gianninasd\pplib\impl\PaysafePaymentService;
  */
 class PaysafePaymentServiceTest extends Unit {
 
-  private $verbose = true;
   private $member;
 
   protected function _before() {
@@ -57,7 +56,7 @@ class PaysafePaymentServiceTest extends Unit {
     $body = $this->createGoodBody( $uuid );
     $req = $this->createGoodRequest( $uuid, $body );
     
-    $ps = new PaysafePaymentService( $this->verbose );
+    $ps = new PaysafePaymentService( false );
     $resp = $ps->process($req);
     $this->assertSame($uuid, $resp->uuid);
     $this->assertSame(400, $resp->httpResponseCode);
@@ -70,7 +69,7 @@ class PaysafePaymentServiceTest extends Unit {
     $req = $this->createGoodRequest( $uuid, $body );
     $req->authenticationToken = "xxx";
     
-    $ps = new PaysafePaymentService( $this->verbose );
+    $ps = new PaysafePaymentService( false );
     $resp = $ps->process($req);
     $this->assertSame($uuid, $resp->uuid);
     $this->assertSame(401, $resp->httpResponseCode);

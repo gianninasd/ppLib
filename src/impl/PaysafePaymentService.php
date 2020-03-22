@@ -12,7 +12,7 @@ class PaysafePaymentService implements PaymentService {
 
   public $verbose;
 
-  function __construct( $verbose ) {
+  function __construct( $verbose = true ) {
     $this->verbose = $verbose;
   }
 
