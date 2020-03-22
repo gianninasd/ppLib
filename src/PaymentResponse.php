@@ -2,7 +2,7 @@
 namespace gianninasd\pplib;
 
 /**
- * 
+ * Domain object representing the raw response from a submitted payment.
  */
 class PaymentResponse {
 

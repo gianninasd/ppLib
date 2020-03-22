@@ -6,7 +6,7 @@ use gianninasd\pplib\PaymentResponse;
 use gianninasd\pplib\PaymentResponseDetails;
 
 /**
- * 
+ * Implementation of the parser for both request and response details.
  */
 class PaysafeParser implements ObjectParser {
 
