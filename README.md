@@ -7,11 +7,18 @@ PPLib
 PHP Library for payment processing integration
 
 ## Pre-requisites
-* Install PHP 7.x
 * Install Composer
+* Install PHP 7.x
+* Download the latest codeception phar distributable from https://codeception.com/install
+  * Place the binary distribution in same folder as the value set for extension_dir in the php.ini
+
+## Getting started
+* Clone the repo from github to your local machine
+* Install all dependencies using composer
+  * Run `composer install` and a _vendor_ folder will be generated
 
 ## Automated Tests
-* Update the values of the global variables in the `tests/unit/_bootstrap.php` file for various tests to execute successfully 
+* Update the values of the global variables in the `tests/unit/_bootstrap.php` file 
 * To execute the unit tests, from a console run: `php <path to>/codecept.phar run unit`
 
 ## Usage
@@ -36,7 +43,7 @@ $req = new PaymentRequest();
 $req->id = "rick@sdf3.com";
 $req->url = "https://somedomain.com/somepath";
 $req->authenticationToken = "some authentication token";
-$req->uuid = $uuid;
+$req->uuid = uniqid("", true);
 $req->body = $body;
 
 // Send the request to the remote third party service provider
