@@ -11,7 +11,7 @@ PHP Library for payment processing integration
 * Install Composer
 
 ## Automated Tests
-* Update the values of the variables in the `tests/unit/_bootstrap.php` file for various tests to execute successfully 
+* Update the values of the global variables in the `tests/unit/_bootstrap.php` file for various tests to execute successfully 
 * To execute the unit tests, from a console run: `php <path to>/codecept.phar run unit`
 
 ## Usage
@@ -34,8 +34,8 @@ $body = json_encode($obj, JSON_NUMERIC_CHECK);
 
 $req = new PaymentRequest();
 $req->id = "rick@sdf3.com";
-$req->url = __URL__;
-$req->authenticationToken = __AUTHTOKEN__;
+$req->url = "https://somedomain.com/somepath";
+$req->authenticationToken = "some authentication token";
 $req->uuid = $uuid;
 $req->body = $body;
 
