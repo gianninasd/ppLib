@@ -124,5 +124,6 @@ class PaysafeParserTest extends Unit {
     $this->assertSame($resp->body, $obj->rawData);
     $this->assertSame("The authentication credentials are invalid.", $obj->errorDetails);
     $this->assertSame("(400) 5279", $obj->errorNo);
+    $this->assertSame("FAILED (400) 5279: The authentication credentials are invalid.", $obj->__toString());
   }
 }

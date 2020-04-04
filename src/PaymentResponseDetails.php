@@ -16,4 +16,8 @@ class PaymentResponseDetails {
   public $errorNo;
   public $errorDetails;
   public $rawData;
+
+  public function __toString() {
+    return "{$this->status} {$this->errorNo}: {$this->errorDetails}";
+  }
 }
