@@ -13,7 +13,7 @@ class PaysafeParser implements ObjectParser {
   /**
    * Returns an object that will be used to create our JSON content for the payment request.
    */
-  function parseRequest( string $uuid, string $paymentToken, object $member, string $amountOwed ) {
+  function parseRequest( $uuid, $paymentToken, $member, $amountOwed ) {
     // create anonymous class objects
     $billingDetails = new class {
       public $country = "";
