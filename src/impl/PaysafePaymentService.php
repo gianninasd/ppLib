@@ -6,13 +6,28 @@ use gianninasd\pplib\PaymentRequest;
 use gianninasd\pplib\PaymentResponse;
 
 /**
- * 
+ * Implementation of the PaymentService interface to interact with the Paysafe vendor.
  */
 class PaysafePaymentService implements PaymentService {
 
+  /**
+   * URL where the payment request will be sent
+   */
+  public $url;
+
+  /**
+   * Authentication token used as part of the HTTP Post request
+   */
+  public $authenticationToken;
+
+  /**
+   * Determines if CURL verbose logging will be enabled, defaults to true
+   */
   public $verbose;
 
-  function __construct( $verbose = true ) {
+  function __construct( $url, $authenticationToken, $verbose = true ) {
+    $this->url = $url;
+    $this->authenticationToken = $authenticationToken;
     $this->verbose = $verbose;
   }
 
@@ -24,13 +39,13 @@ class PaysafePaymentService implements PaymentService {
       error_log($request->uuid . " Sending payment for " . $request->id);
 
       $ch = curl_init();
-      curl_setopt($ch, CURLOPT_URL, $request->url);
+      curl_setopt($ch, CURLOPT_URL, $this->url);
       curl_setopt($ch, CURLOPT_POST, true);
       curl_setopt($ch, CURLOPT_POSTFIELDS, $request->body);
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
       curl_setopt($ch, CURLOPT_VERBOSE, $this->verbose);
       curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json', 'Authorization: Basic ' . $request->authenticationToken) );
+      curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json', 'Authorization: Basic ' . $this->authenticationToken) );
 
       $resp = new PaymentResponse( $request->uuid );
       $resp->body = curl_exec($ch);

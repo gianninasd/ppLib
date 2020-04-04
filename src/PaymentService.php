@@ -5,7 +5,7 @@ use gianninasd\pplib\PaymentRequest;
 use gianninasd\pplib\PaymentResponse;
 
 /**
- * 
+ * Interface to be implemented to interact with payment processing vendor.
  */
 interface PaymentService {
 

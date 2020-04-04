@@ -17,16 +17,6 @@ class PaymentRequest {
   public $uuid;
 
   /**
-   * URL where the payment request will be sent
-   */
-  public $url;
-
-  /**
-   * Authentication token used as part of the HTTP Post request
-   */
-  public $authenticationToken;  
-
-  /**
    * The full body of the request to be sent in JSON format
    */
   public $body;

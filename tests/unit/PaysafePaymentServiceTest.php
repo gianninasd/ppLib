@@ -44,8 +44,6 @@ class PaysafePaymentServiceTest extends Unit {
   private function createGoodRequest( $uuid, $body ) {
     $req = new PaymentRequest();
     $req->id = "rick@sdf3.com";
-    $req->url = __URL__;
-    $req->authenticationToken = __AUTHTOKEN__;
     $req->uuid = $uuid;
     $req->body = $body;
     return $req;
@@ -56,7 +54,7 @@ class PaysafePaymentServiceTest extends Unit {
     $body = $this->createGoodBody( $uuid );
     $req = $this->createGoodRequest( $uuid, $body );
     
-    $ps = new PaysafePaymentService( false );
+    $ps = new PaysafePaymentService( __URL__, __AUTHTOKEN__, false );
     $resp = $ps->process($req);
     $this->assertSame($uuid, $resp->uuid);
     $this->assertSame(400, $resp->httpResponseCode);
@@ -67,9 +65,8 @@ class PaysafePaymentServiceTest extends Unit {
     $uuid = uniqid("", true);
     $body = $this->createGoodBody( $uuid );
     $req = $this->createGoodRequest( $uuid, $body );
-    $req->authenticationToken = "xxx";
     
-    $ps = new PaysafePaymentService( false );
+    $ps = new PaysafePaymentService( __URL__, "xxx", false );
     $resp = $ps->process($req);
     $this->assertSame($uuid, $resp->uuid);
     $this->assertSame(401, $resp->httpResponseCode);

@@ -41,13 +41,11 @@ $body = json_encode($obj, JSON_NUMERIC_CHECK);
 
 $req = new PaymentRequest();
 $req->id = "rick@sdf3.com";
-$req->url = "https://somedomain.com/somepath";
-$req->authenticationToken = "some authentication token";
 $req->uuid = uniqid("", true);
 $req->body = $body;
 
 // Send the request to the remote third party service provider
-$ps = new PaysafePaymentService();
+$ps = new PaysafePaymentService( "https://somedomain.com/somepath", "some authentication token" );
 $resp = $ps->process( $req );
 
 // Process the response
@@ -62,3 +60,4 @@ echo( $jsonResponse );
 * http://www.darwinbiler.com/creating-composer-package-library/
 * https://blog.jgrossi.com/2013/creating-your-first-composer-packagist-package/
 * https://www.w3resource.com/php/composer/create-publish-and-use-your-first-composer-package.php - describes how to submit to packagist
+* https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
