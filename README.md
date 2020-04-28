@@ -9,17 +9,14 @@ PHP Library for payment processing integration
 ## Pre-requisites
 * Install Composer
 * Install PHP 7.x
-* Download the latest codeception phar distributable from https://codeception.com/install
-  * Place the binary distribution in same folder as the value set for extension_dir in the php.ini
 
 ## Getting started
 * Clone the repo from github to your local machine
-* Install all dependencies using composer
-  * Run `composer install` and a _vendor_ folder will be generated
+* Install all dependencies, run `composer install` and a _vendor_ folder will be generated
 
 ## Automated Tests
 * Update the values of the global variables in the `tests/unit/_bootstrap.php` file 
-* To execute the unit tests, from a console run: `php <path to>/codecept.phar run unit`
+* To execute the unit tests, from a console run: `vendor/bin/codecept.bat run unit`
 
 ## Usage
 Below is some sample code on how to use the various classes to prepare, send and process a payment.
