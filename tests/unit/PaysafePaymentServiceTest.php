@@ -49,6 +49,9 @@ class PaysafePaymentServiceTest extends Unit {
     return $req;
   }
 
+  /**
+   * @skip
+   */
   public function testBadToken() {
     $uuid = uniqid("", true);
     $body = $this->createGoodBody( $uuid );
@@ -61,6 +64,9 @@ class PaysafePaymentServiceTest extends Unit {
     $this->assertStringStartsWith("{", $resp->body);
   }
 
+  /**
+   * @skip
+   */
   public function testBadKey() {
     $uuid = uniqid("", true);
     $body = $this->createGoodBody( $uuid );
